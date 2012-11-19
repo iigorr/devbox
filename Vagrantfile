@@ -34,7 +34,7 @@ Vagrant::Config.run do |config|
   # Share an additional folder to the guest VM. The first argument is
   # an identifier, the second is the path on the guest to mount the
   # folder, and the third is the path on the host to the actual folder.
-  # config.vm.share_folder "v-data", "/vdata", "/devel/data"
+  config.vm.share_folder "v-data", "/vdata", "/devel/", :create=> true
 
   # Enable provisioning with Puppet stand alone.  Puppet manifests
   # are contained in a directory path relative to this Vagrantfile.
@@ -54,10 +54,12 @@ Vagrant::Config.run do |config|
   # #               Managed by Puppet.\n"
   # # }
   #
-  # config.vm.provision :puppet do |puppet|
-  #   puppet.manifests_path = "manifests"
-  #   puppet.manifest_file  = "base.pp"
-  # end
+  config.vm.provision  :puppet do  |puppet|
+    puppet.manifests_path = "puppet/vagrant-manifests"
+    puppet.manifest_file = "base.pp"
+    puppet.module_path  = "puppet/modules"
+    puppet.facter = { "fqdn" => "box.dev" }
+  end
 
   # Enable provisioning with chef solo, specifying a cookbooks path, roles
   # path, and data_bags path (all relative to this Vagrantfile), and adding 
