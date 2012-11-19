@@ -1,0 +1,14 @@
+{
+	"folders":
+	[
+		{
+			"path": "/C/devel/bones/devbox"
+		},
+		{
+			"path": "/C/devel/bones/service",
+      "folder_exclude_patterns": ["target"]
+		}
+
+	]
+
+}
