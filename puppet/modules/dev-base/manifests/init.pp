@@ -1,16 +1,9 @@
 
 class dev-base {
 
-
-  exec { "apt-get-init":
-    path => "/usr/bin:/usr/sbin:/bin:/usr/local/bin",
-    command => "apt-get update",
-  }
-
-  $basics = [ "screen", "strace", "sudo", "curl", "wget", "telnet" ]
+  $basics = [ "screen", "strace", "curl", "wget", "telnet", "emacs" ]
   package { $basics:
     ensure => "installed",
-    require => Exec["apt-get-init"],
   }
 
   package { "git-core":
