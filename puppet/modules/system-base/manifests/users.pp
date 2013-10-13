@@ -5,13 +5,13 @@ class system-base::users {
   $password   = '$6$1OK3l7RB$QPsWNzK0A9JnwBn9rGohmp58XPrg6SvKFBLrRXSO30933or6qQjd1D2DZZL/IkpkbqQYjNSyZ/liwCX3qiqVT/'
   user { $username:
     ensure     => "present",
-    shell      => '/bin/zsh',
+    shell      => '/bin/bash',
     home       => "/home/$username",
     managehome => true,
     password_max_age => '99999',
     password_min_age => '0',
     groups     => ["users", "adm", "sudo"],
-    require    => [Package["zsh"], Package["sudo"]]
+    require    => [ Package["sudo"]]
   }
 
   exec { "set-password":
@@ -35,17 +35,4 @@ class system-base::users {
     require => File["/home/$username/.ssh"],
   }
 
-  exec { "oh-my-zsh":
-    command => "/usr/bin/curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh",
-    user    => "$username",
-    require => [Package["curl"], Package["git-core"],  Package["zsh"], User["$username"]],
-    onlyif  =>  "/usr/bin/test ! -d ~/.oh-my-zsh"
-  }
-  file {"/home/$username/.zshrc":
-    source  => "puppet:///modules/system-base/.zshrc",
-    owner   => $username,
-    group   => $username,
-    mode    => 755,
-    require => [User["$username"], Package["zsh"]],
-  }
 }
