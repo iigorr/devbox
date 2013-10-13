@@ -10,4 +10,6 @@ class dev-base {
     ensure => installed,
   }
 
+
+  include dev-base::ruby
 }
