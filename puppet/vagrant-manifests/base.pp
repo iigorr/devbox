@@ -1,3 +1,5 @@
+$username = "igor"
+
 include system-base
 include dev-base
 include maven
