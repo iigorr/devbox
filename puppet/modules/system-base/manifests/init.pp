@@ -7,7 +7,7 @@ class system-base {
   }
 
 
-  $basics = [ "sudo", "zsh", "vim"]
+  $basics = [ "sudo", "vim"]
   package { $basics:
     ensure => "installed",
     require => Exec["apt-get-init"],
