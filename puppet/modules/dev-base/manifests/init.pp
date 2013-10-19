@@ -15,7 +15,7 @@ class dev-base {
     owner   => $username,
     group   => $username,
     source  => "puppet:///modules/dev-base/.gitconfig",
-    require => [User[$username], Package['git-core']]
+    require => [User[$username], Package['git-core']],
   }
 
   include dev-base::ruby
