@@ -1,8 +1,6 @@
-$username = "igor"
-
 include system-base
 include dev-base
 include maven
 
 
-Class["system-base"] -> Class["dev-base"]-> Class["maven"] 
+Class["system-base"] -> Class["dev-base"] -> Class["maven"] 
