@@ -1,7 +1,7 @@
 
 class dev-base {
 
-  $basics = [ "screen", "strace", "curl", "wget", "telnet", "emacs" ]
+  $basics = [ "screen", "strace", "curl", "wget", "telnet"]
   package { $basics:
     ensure => "installed",
   }
