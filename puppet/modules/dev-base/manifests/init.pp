@@ -19,4 +19,5 @@ class dev-base {
   }
 
   include dev-base::ruby
+  include dev-base::php
 }
