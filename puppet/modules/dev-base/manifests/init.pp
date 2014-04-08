@@ -18,6 +18,7 @@ class dev-base {
     require => [User[$username], Package['git-core']],
   }
 
+  include dev-base::node
   include dev-base::ruby
   include dev-base::php
 }
