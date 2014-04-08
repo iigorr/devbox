@@ -33,4 +33,11 @@ class system-base::users {
     require => File["/home/$username/.ssh"],
   }
 
+  file { "/home/$username/.bashrc":
+    ensure  => file,
+    owner   => $username,
+    group   => $username,
+    source  => "puppet:///modules/system-base/.bashrc",
+    require => User[$username],
+  }
 }
