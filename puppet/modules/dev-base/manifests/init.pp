@@ -1,7 +1,7 @@
 
 class dev-base {
 
-  $basics = [ "screen", "strace", "curl", "wget", "telnet"]
+  $basics = [ "screen", "strace", "curl", "wget", "telnet", "python", "python-pip"]
   package { $basics:
     ensure => "installed",
   }
@@ -18,7 +18,7 @@ class dev-base {
     require => [User[$username], Package['git-core']],
   }
 
-  include dev-base::node
   include dev-base::ruby
   include dev-base::php
+  include dev-base::aws
 }

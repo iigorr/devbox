@@ -20,6 +20,14 @@ Vagrant::Config.run do |config|
     public_key = yml['public_key']
   end
 
+  if yml.has_key?('aws')
+    if yml['aws'].has_key?('id')
+      aws_id = yml['aws']['id']
+    end
+    if yml['aws'].has_key?('key')
+      aws_key = yml['aws']['key']
+    end
+  end
 
   config.vm.box = 'box'
   config.vm.host_name = 'box.dev'
@@ -36,7 +44,9 @@ Vagrant::Config.run do |config|
       'fqdn'       => 'box.dev',
       'username'   => username,
       'password'   => password,
-      'public_key' => public_key
+      'public_key' => public_key,
+      'aws_id'     => aws_id,
+      'aws_key'    => aws_key,
     }
   end
 
