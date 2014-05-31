@@ -16,6 +16,7 @@ class system-base::users {
     command => "/bin/echo '$username:$password' | /usr/sbin/chpasswd -e",
     path    => "/usr/bin:/usr/sbin:/bin:/usr/local/bin",
     require => User["$username"],
+    refreshonly => true
   }
   file { "/home/$username/.ssh":
     ensure  => directory,

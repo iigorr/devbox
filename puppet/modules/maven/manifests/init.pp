@@ -12,7 +12,8 @@ class maven {
   exec { "set-java-home":
     path    => '/usr/bin:/usr/sbin:/bin:/usr/local/bin',
     command => 'sh /etc/profile.d/java.sh',
-    require => [Package["openjdk-7-jdk"], File["/etc/profile.d/java.sh"]]
+    require => [Package["openjdk-7-jdk"], File["/etc/profile.d/java.sh"]],
+    refreshonly => true,
   }
 
   package { "maven2":
