@@ -3,7 +3,7 @@ class dev-base::node {
   exec { 'node-repo' :
     command => '/usr/bin/add-apt-repository ppa:chris-lea/node.js',
     creates => '/etc/apt/sources.list.d/chris-lea-node_js-precise.list',
-    require => package['python-software-properties']
+    require => Package['python-software-properties']
   }
 
   exec { 'apt-ready' :
@@ -14,5 +14,10 @@ class dev-base::node {
 
   package { [ "nodejs" ] :
     require => Exec["apt-ready"]
+  }
+
+  exec { 'grunt-cli':
+    command => '/usr/bin/npm -g install grunt-cli',
+    creates => '/usr/bin/grunt'
   }
 }
