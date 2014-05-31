@@ -1,8 +1,6 @@
 require 'yaml'
 
-Vagrant::Config.run do |config|
-
-  yml = YAML.load_file 'private/user.yml'
+yml = YAML.load_file 'private/user.yml'
 
   username = 'vagrant'
   password = '$6$aqzOtgCM$OxgoMP4JoqMJ1U1F3MZPo2iBefDRnRCXSfgIM36E5cfMNcE7GcNtH1P/tTC2QY3sX3BxxJ7r/9ciScIVTa55l0'
@@ -29,12 +27,16 @@ Vagrant::Config.run do |config|
     end
   end
 
+Vagrant::Config.run do |config|
+
   config.vm.box = 'box'
   config.vm.host_name = 'box.dev'
   config.vm.box_url = 'http://files.vagrantup.com/precise64.box'
 
   config.vm.network :hostonly, '192.168.23.23'
   config.vm.forward_port 80, 80
+
+
 
   config.vm.provision  :puppet do  |puppet|
     puppet.manifests_path = 'puppet/vagrant-manifests'
@@ -50,4 +52,9 @@ Vagrant::Config.run do |config|
     }
   end
 
+end
+
+Vagrant.configure("2") do |config|
+  config.vm.synced_folder 'c:\\users\\igor\\dev', '/devel',
+    owner: username, group: username
 end
