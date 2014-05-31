@@ -19,6 +19,7 @@ class dev-base {
   }
 
   include dev-base::ruby
-  include dev-base::php
+  include dev-base::aws
+  include dev-base::node
   include dev-base::aws
 }
