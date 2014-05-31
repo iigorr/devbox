@@ -1,0 +1,16 @@
+[global]
+netbios name = VirtualDev
+server string = VirtualDev
+workgroup = mi
+security = share
+
+[devel]
+comment = svn checkout
+path = /home/<%= @username %>/dev
+read only = no
+guest only = Yes
+create mask = 0644
+directory mask = 0755
+force user = <%= @username %>
+force group = <%= @username %>
+

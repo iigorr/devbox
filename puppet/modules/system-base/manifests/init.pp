@@ -15,4 +15,5 @@ class system-base {
   }
 
   include system-base::users
+  include system-base::smb
 }
