@@ -40,6 +40,10 @@ Vagrant.configure("2") do |config|
   config.vm.network :forwarded_port, guest: 139, host: 139 # Windows Shares
   config.vm.network :forwarded_port, guest: 445, host: 445 # Windows Shares
 
+  config.vm.provider "virtualbox" do |v|
+    v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+  end
+
   config.ssh.forward_agent = false
 
   config.vm.provision  :puppet do  |puppet|
