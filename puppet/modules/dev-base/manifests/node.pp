@@ -16,8 +16,15 @@ class dev-base::node {
     require => Exec["apt-ready"]
   }
 
-  exec { 'grunt-cli':
-    command => '/usr/bin/npm -g install grunt-cli',
-    creates => '/usr/bin/grunt'
+  define npm ($package_name = $title) {
+    $nodebase = '/usr/lib/node_modules/'
+
+    exec { "/usr/bin/npm -g install $package_name":
+      creates => "$nodebase/$package_name"
+    }  
   }
+
+  npm { ['grunt-cli', 'mocha']: }
+
+  
 }
