@@ -41,9 +41,4 @@ class system-base::users {
     source  => "puppet:///modules/system-base/.bashrc",
     require => User[$username],
   }
-
-  file { "/home/$username/dev":
-   ensure => 'link',
-   target => '/devel',
-  }
 }
