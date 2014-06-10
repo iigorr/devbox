@@ -8,7 +8,7 @@ class system-base {
   }
 
 
-  $basics = [ 'sudo', 'vim', 'python-software-properties']
+  $basics = [ 'sudo', 'vim', 'tree', 'python-software-properties']
   package { $basics:
     ensure => 'installed',
     require => Exec['apt-get-init'],
