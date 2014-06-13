@@ -24,7 +24,9 @@ class dev-base::node {
     }  
   }
 
-  npm { ['grunt-cli', 'mocha']: }
+  npm { ['grunt-cli', 'mocha', 'bower']: 
+    require => Package['nodejs']
+  }
 
   
 }
