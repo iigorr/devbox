@@ -17,6 +17,6 @@ class dev-base::aws {
     group   => "$username",
     mode    => '0600',
     content => template('dev-base/aws/config.erb'),
-    require => File['/home/$username/.aws/']
+    require => File["/home/$username/.aws/"]
   }
 }
