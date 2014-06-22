@@ -1,11 +1,8 @@
 class dev-base::aws {
 
+  include dev-base::python
 
-  exec { 'install awscli':
-    path    => '/usr/bin:/usr/sbin:/bin:/usr/local/bin',
-    command => 'pip install awscli',
-    unless => 'pip freeze | grep awscli',
-    require => [Package["python-pip"]],
+  dev-base::python::pip { 'awscli': 
   }
 
   file{"/home/$username/.aws/":
