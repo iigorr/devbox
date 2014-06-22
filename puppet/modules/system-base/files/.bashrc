@@ -106,5 +106,5 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
-PATH=$PATH:~/bin/
+PATH=$PATH:~/bin/:~/dev/automation/src/main/bash/:~/dev/automation/src/main/python/
 CDPATH=.:~/dev
