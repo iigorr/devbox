@@ -3,4 +3,4 @@ include dev-base
 include maven
 
 
-Class["system-base"] -> Class["dev-base"] -> Class["maven"] 
+Class["system-base"] -> Class["dev-base"]
