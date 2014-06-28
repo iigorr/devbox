@@ -1,6 +1,7 @@
 class dev-base::python {
 
   $packages = [ ]
+  $pip-packages = [ 'sh' ]
   package { $packages:
     ensure => 'installed',
   }
@@ -12,4 +13,7 @@ class dev-base::python {
       require => [Package["python-pip"]]
     }  
   }
+
+
+  pip{ $pip-packages: }
 }
