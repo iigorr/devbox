@@ -108,3 +108,4 @@ fi
 
 PATH=$PATH:~/bin/:~/dev/automation/src/main/bin/
 CDPATH=.:~/dev
+EDITOR=vim
