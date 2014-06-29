@@ -1,7 +1,7 @@
 class dev-base::python {
 
   $packages = [ 'python-dev']
-  $pip-packages = [ 'sh', 'fabric' ]
+  $pip_packages = [ 'sh', 'fabric' ]
   package { $packages:
     ensure  => 'installed',
     require => Exec['apt-get-init'],
@@ -16,5 +16,5 @@ class dev-base::python {
   }
 
 
-  pip{ $pip-packages: }
+  pip{ $pip_packages: }
 }
