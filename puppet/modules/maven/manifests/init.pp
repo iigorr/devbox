@@ -1,7 +1,8 @@
 class maven {
 
   package { "openjdk-7-jdk":
-    ensure => "installed",
+    ensure  => "installed",
+    require => Exec['apt-get-init']
   }
 
   file { "/etc/profile.d/java.sh":
