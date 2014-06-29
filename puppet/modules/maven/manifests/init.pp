@@ -17,7 +17,7 @@ class maven {
     refreshonly => true,
   }
 
-  package { "maven2":
+  package { "maven":
     ensure => "installed",
     require => Exec["set-java-home"]
   }
