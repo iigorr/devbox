@@ -1,31 +1,16 @@
 
 class system-base {
 
-  file {'/tmp/neotechnology.gpg.key':
+  $apt_keys= ['neotechnology.gpg.key', 'elasticsearch.gpg.key']
+  
+  aptkey {$apt_keys: }
+
+  file {'/etc/apt/sources.list.d/custom_sources.list':
     ensure => present,
     owner  => 'root',
     group  => 'root',
     mode   => '0644',
-    source => 'puppet:///modules/system-base/neotechnology.gpg.key',
-  }
-
-  exec { "Import neotechnology key to apt keystore":
-    path        => '/bin:/usr/bin',
-    environment => 'HOME=/root',
-    command     => 'apt-key add /tmp/neotechnology.gpg.key',
-    user        => 'root',
-    group       => 'root',
-    unless      => 'apt-key list | grep neotechnology',
-    logoutput   => on_failure,
-    require     => File['/tmp/neotechnology.gpg.key'],
-  }
-
-  file {'/etc/apt/sources.list.d/neo4j.list':
-    ensure => present,
-    owner  => 'root',
-    group  => 'root',
-    mode   => '0644',
-    source => 'puppet:///modules/system-base/neo4j.list',
+    source => 'puppet:///modules/system-base/custom_sources.list',
   }
 
 
@@ -33,14 +18,34 @@ class system-base {
     path        => '/usr/bin:/usr/sbin:/bin:/usr/local/bin',
     command     => 'apt-get update',
     refreshonly => true,
-    require     => File['/etc/apt/sources.list.d/neo4j.list'],
+    require     => File['/etc/apt/sources.list.d/custom_sources.list'],
   }
 
 
-  $basics = [ 'sudo', 'vim', 'tree', 'python-software-properties']
-  package { $basics:
+  $basic_packages = [ 'sudo', 'vim', 'tree', 'python-software-properties']
+  package { $basic_packages:
     ensure => 'installed',
     require => Exec['apt-get-init'],
+  }
+
+  define aptkey ($key_name = $title) {
+    file {"/tmp/$key_name":
+      ensure => present,
+      owner  => 'root',
+      group  => 'root',
+      mode   => '0644',
+      source => "puppet:///modules/system-base/$key_name",
+    }
+    exec { "Import $key_name to apt keystore":
+      path        => '/bin:/usr/bin',
+      environment => 'HOME=/root',
+      command     => "apt-key add /tmp/$key_name",
+      user        => 'root',
+      group       => 'root',
+      unless      => "apt-key list | grep $key_name",
+      logoutput   => on_failure,
+      require     => File["/tmp/$key_name"],
+    } 
   }
 
   include system-base::users
