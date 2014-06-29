@@ -6,8 +6,10 @@ class dev-base::aws {
   }
 
   file{"/home/$username/.aws/":
-      ensure => directory,
+    ensure => directory,
+    require => User[$username],
   }
+  
   file { "aws-config":
     path    => "/home/$username/.aws/config",
     owner   => "$username",
