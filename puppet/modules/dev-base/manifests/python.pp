@@ -1,7 +1,7 @@
 class dev-base::python {
 
-  $packages = [ ]
-  $pip-packages = [ 'sh' ]
+  $packages = [ 'python-dev']
+  $pip-packages = [ 'sh', 'fabric' ]
   package { $packages:
     ensure => 'installed',
   }
@@ -10,7 +10,7 @@ class dev-base::python {
     exec { "pip install $package_name":
       path    => '/usr/bin:/usr/sbin:/bin:/usr/local/bin',
       unless  => "pip freeze | grep $package_name",
-      require => [Package["python-pip"]]
+      require => [Package["python-pip"], Package['python-dev']]
     }  
   }
 
