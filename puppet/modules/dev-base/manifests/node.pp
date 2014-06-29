@@ -9,7 +9,6 @@ class dev-base::node {
   exec { 'apt-ready' :
     command => '/usr/bin/apt-get update',
     require => Exec['node-repo'],
-    refreshonly => true
   }
 
   package { [ "nodejs" ] :
