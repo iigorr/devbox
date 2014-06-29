@@ -17,7 +17,6 @@ class system-base {
   exec { 'apt-get-init':
     path        => '/usr/bin:/usr/sbin:/bin:/usr/local/bin',
     command     => 'apt-get update',
-    refreshonly => true,
     require     => File['/etc/apt/sources.list.d/custom_sources.list'],
   }
 
