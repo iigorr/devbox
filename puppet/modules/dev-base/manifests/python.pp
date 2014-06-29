@@ -3,7 +3,8 @@ class dev-base::python {
   $packages = [ 'python-dev']
   $pip-packages = [ 'sh', 'fabric' ]
   package { $packages:
-    ensure => 'installed',
+    ensure  => 'installed',
+    require => Exec['apt-get-init'],
   }
 
   define pip ($package_name = $title) {
