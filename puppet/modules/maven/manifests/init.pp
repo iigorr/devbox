@@ -17,6 +17,12 @@ class maven {
     refreshonly => true,
   }
 
+  exec { "set-java7-alternative":
+    path    => '/usr/bin:/usr/sbin:/bin:/usr/local/bin',
+    command => 'update-alternatives --set java /usr/lib/jvm/java-7-openjdk-amd64/jre/bin/java',
+    require => Package["openjdk-7-jdk"],
+  }
+ 
   package { "maven":
     ensure => "installed",
     require => Exec["set-java-home"]
