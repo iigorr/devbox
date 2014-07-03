@@ -2,7 +2,8 @@ class dev-base::aws {
 
   include dev-base::python
 
-  dev-base::python::pip { 'awscli': 
+  $pip_packages= ['awscli', 'boto']
+  dev-base::python::pip { $pip_packages: 
   }
 
   file{"/home/$username/.aws/":
