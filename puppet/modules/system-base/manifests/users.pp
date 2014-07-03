@@ -6,17 +6,13 @@ class system-base::users {
     shell      => '/bin/bash',
     home       => "/home/$username",
     managehome => true,
+    password   => $password,
     password_max_age => '99999',
     password_min_age => '0',
     groups     => ["users", "adm", "sudo"],
     require    => [ Package["sudo"]]
   }
 
-  exec { "set-password":
-    command => "/bin/echo '$username:$password' | /usr/sbin/chpasswd -e",
-    path    => "/usr/bin:/usr/sbin:/bin:/usr/local/bin",
-    require => User["$username"],
-  }
   
   file { "/home/$username/.ssh":
     ensure  => directory,

@@ -10,7 +10,7 @@ class dev-base::python {
   define pip ($package_name = $title) {
     exec { "pip install $package_name":
       path    => '/usr/bin:/usr/sbin:/bin:/usr/local/bin',
-      unless  => "pip freeze | grep $package_name",
+      unless  => "pip freeze | grep -i $package_name",
       require => [Package["python-pip"], Package['python-dev']]
     }  
   }

@@ -41,9 +41,9 @@ class system-base {
       command     => "apt-key add /tmp/$key_name",
       user        => 'root',
       group       => 'root',
-      unless      => "apt-key list | grep $key_name",
       logoutput   => on_failure,
-      require     => File["/tmp/$key_name"],
+      refreshonly => true,
+      subscribe   => File["/tmp/$key_name"],
     } 
   }
 
