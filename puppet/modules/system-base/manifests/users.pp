@@ -41,4 +41,12 @@ class system-base::users {
     source  => "puppet:///modules/system-base/.bashrc",
     require => User[$username],
   }
+
+  file { "/etc/profile":
+    ensure  => file,
+    owner   => $username,
+    group   => $username,
+    source  => "puppet:///modules/system-base/profile",
+    require => User[$username],
+  }
 }
