@@ -1,7 +1,7 @@
 class dev-base::python {
 
   $packages = [ 'python-dev']
-  $pip_packages = [ 'sh', 'fabric' ]
+  $pip_packages = [ 'sh', 'fabric', 'configparser' ]
   package { $packages:
     ensure  => 'installed',
     require => Exec['apt-get-init'],
