@@ -1,7 +1,7 @@
 
 class dev-base {
 
-  $basics = [ 'screen', 'strace', 'curl', 'wget', 'telnet', 'python', 'python-pip', 'git-core', 'neo4j', 'elasticsearch']
+  $basics = [ 'screen', 'strace', 'curl', 'wget', 'telnet', 'python', 'python-pip', 'git-core', 'neo4j', 'elasticsearch', 'jq']
   package { $basics:
     ensure => 'installed',
     require => Exec['apt-get-init'],
