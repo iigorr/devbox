@@ -27,6 +27,11 @@ class system-base {
     require => Exec['apt-get-init'],
   }
 
+  $purge_packages= ['consolekit', 'rsyslog', 'dbus', 'dbus-x11', 'nfs-kernel-server', 'nfs-common', 'portmap']
+  package { $purge_packages:
+    ensure => 'purged'
+  }
+
   define aptkey ($key_name = $title) {
     file {"/tmp/$key_name":
       ensure => present,
