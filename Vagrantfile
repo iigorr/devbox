@@ -1,10 +1,11 @@
 require 'yaml'
 
-yml = YAML.load_file 'private/user.yml'
+username = 'vagrant'
+password = '$6$aqzOtgCM$OxgoMP4JoqMJ1U1F3MZPo2iBefDRnRCXSfgIM36E5cfMNcE7GcNtH1P/tTC2QY3sX3BxxJ7r/9ciScIVTa55l0'
+public_key = ''
 
-  username = 'vagrant'
-  password = '$6$aqzOtgCM$OxgoMP4JoqMJ1U1F3MZPo2iBefDRnRCXSfgIM36E5cfMNcE7GcNtH1P/tTC2QY3sX3BxxJ7r/9ciScIVTa55l0'
-  public_key = ''
+if File.exists? ('private/user.yml')
+  yml = YAML.load_file 'private/user.yml'
 
   if yml.has_key?('username')
     username = yml['username']
@@ -26,6 +27,7 @@ yml = YAML.load_file 'private/user.yml'
       aws_key = yml['aws']['key']
     end
   end
+end
 
 Vagrant.configure("2") do |config|
 
