@@ -3,13 +3,13 @@ class system-base::smb {
   
   package { [ 'samba', 'samba-common']:
     ensure => 'installed',
-    require => Exec['apt-get-init'],
+    require => Exec['apt-get-update'],
   }
 
-  service { 'smbd':
+  service { 'samba':
     ensure     => running,
     hasrestart => true,
-    pattern    => 'smbd',
+    pattern    => 'samba',
     require    => Package['samba'],
     subscribe  => File['/etc/samba/smb.conf'],
   }

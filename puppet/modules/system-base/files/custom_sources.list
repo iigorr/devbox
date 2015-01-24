@@ -1,3 +1,5 @@
 deb http://debian.neo4j.org/repo stable/
 
 deb http://packages.elasticsearch.org/elasticsearch/1.2/debian stable main
+
+deb https://deb.nodesource.com/node wheezy main

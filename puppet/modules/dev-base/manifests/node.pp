@@ -1,18 +1,9 @@
 class dev-base::node {
 
-  exec { 'node-repo' :
-    command => '/usr/bin/add-apt-repository ppa:chris-lea/node.js',
-    creates => '/etc/apt/sources.list.d/chris-lea-node_js-precise.list',
-    require => Package['python-software-properties']
-  }
-
-  exec { 'apt-ready' :
-    command => '/usr/bin/apt-get update',
-    require => Exec['node-repo'],
-  }
 
   package { [ "nodejs" ] :
-    require => Exec["apt-ready"]
+    ensure => installed,
+    require => [Exec['apt-get-update'], System-base::Aptkey['nodesource.gpg.key']],
   }
 
   define npm ($package_name = $title) {
@@ -20,12 +11,11 @@ class dev-base::node {
 
     exec { "/usr/bin/npm -g install $package_name":
       creates => "$nodebase/$package_name"
-    }  
+    }
   }
 
-  npm { ['grunt-cli', 'mocha', 'bower']: 
+  npm { ['grunt-cli', 'mocha', 'bower']:
     require => Package['nodejs']
   }
 
-  
 }
