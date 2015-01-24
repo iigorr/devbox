@@ -35,6 +35,8 @@ Vagrant.configure("2") do |config|
   config.vm.host_name = 'box.dev'
   config.vm.box_url = 'https://www.dropbox.com/s/23gupgb0xompvkm/Wheezy64.box?dl=1'
 
+  config.vm.network "private_network", ip: "192.168.23.23"
+
   config.vm.network :forwarded_port, guest: 80, host: 80
   config.vm.network :forwarded_port, guest: 8080, host: 8080
   config.vm.network :forwarded_port, guest: 8081, host: 8081
