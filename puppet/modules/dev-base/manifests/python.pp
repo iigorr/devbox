@@ -1,7 +1,7 @@
 class dev-base::python {
 
   $packages = [ 'python-dev']
-  $pip_packages = [ 'sh', 'fabric', 'configparser', 'pyyaml', 'BeautifulSoup']
+  $pip_packages = [ 'sh', 'fabric', 'configparser', 'pyyaml', 'BeautifulSoup', 'dolly']
   package { $packages:
     ensure  => 'installed',
     require => Exec['apt-get-update'],
